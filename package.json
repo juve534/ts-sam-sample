@@ -1,0 +1,13 @@
+{
+  "name": "ts-sam-sample",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/juve534/ts-sam-sample.git",
+  "author": "juve534 <maxim_4141.rock@zoho.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^13.9.0",
+    "@types/request": "^2.48.4",
+    "typescript": "^3.8.3"
+  }
+}
