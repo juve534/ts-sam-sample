@@ -1,0 +1,27 @@
+version: 2
+
+jobs:
+  deploy:
+    docker:
+      - image: circleci/python:3-node
+    working_directory: ~/ts-sam-sample
+    steps:
+      - run:
+          name: Install awscli
+          command: |
+            pip install --upgrade pip
+            pip install awscli aws-sam-cli
+      - checkout
+      - run: yarn
+      - run: sam package --output-template-file packaged.yaml --s3-bucket ts-sam-sample
+      - run: sam deploy --template-file packaged.yaml --stack-name ts-sam-sample --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - deploy:
+          context: aws
+          filters:
+            branches:
+              only: master
